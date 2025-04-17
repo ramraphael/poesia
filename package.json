@@ -1,5 +1,5 @@
 {
-  "name": "my-turborepo",
+  "name": "novellia-takehome",
   "private": true,
   "scripts": {
     "build": "turbo run build",
