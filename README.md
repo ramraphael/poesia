@@ -1,4 +1,4 @@
-# Raphael's takehome for Novellia
+# Novellia Takehome (Raphael Ram)
 
 ## Structure
 
