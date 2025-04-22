@@ -64,9 +64,9 @@ Once the entities are created/posted via the dialogs, SWR's cache is revalidated
 
 ## Potential Changes (if building this for the real world)
 
-1. Editing and deleting entities (pets, vaccines, allergies, labs) was not completed due to a lack of time.
-    a. Editing can be done by extending the existing dialogs so they take additional props for default form values, and hit a different PATCH endpoint for editing entities
-    b. Deleting entities can by done via a Delete button added to each card + a confirmation dialog
+1. Editing and deleting entities (pets, vaccines, allergies, labs) was not completed due to a lack of time.  
+   a. Editing can be done by extending the existing dialogs so they take additional props for default form values, and hit a different PATCH endpoint for editing entities  
+   b. Deleting entities can by done via a Delete button added to each card + a confirmation dialog
 2. Proper serverside session management with expiration, and the ability to refresh sesions.
 3. Use Suspense and Error Boundaries for handling async calls. I've taken a liking to Suspense for being a much more declarative pattern for async data flows in React (and React Native).
 4. Component libraries in React Native are still quite nacent compared to React on the web. [RNR (React Native Reusables)](https://rnr-docs.vercel.app/getting-started/introduction/) is a promising option in the vein of [ShadCN](https://ui.shadcn.com/), where components are copied into the project repository instead of being installed as an npm package. Ideally, components should be built from scratch using either stylesheets or NativeWind.
