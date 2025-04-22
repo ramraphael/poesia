@@ -1,0 +1,99 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Account {
+    id          String   @id @default(uuid())
+    email       String   @unique
+    password    String
+    name        String?
+    phoneNumber String?
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @default(now()) @updatedAt
+    pets        Pet[]
+}
+
+model Pet {
+    id        String        @id @default(uuid())
+    name      String
+    species   AnimalSpecies
+    breed     String?
+    birthDate DateTime?     @db.Date
+    createdAt DateTime      @default(now())
+    updatedAt DateTime      @default(now()) @updatedAt
+
+    // Account relation
+    accountId String
+    account   Account? @relation(fields: [accountId], references: [id])
+
+    // Medical Records
+    vaccines  Vaccine[]
+    allergies Allergy[]
+    labs      LabReport[]
+}
+
+enum AnimalSpecies {
+    DOG
+    CAT
+    BIRD
+}
+
+model Vaccine {
+    id        String   @id @default(uuid())
+    name      String
+    date      DateTime
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now()) @updatedAt
+
+    // Pet relation
+    petId String
+    pet   Pet    @relation(fields: [petId], references: [id])
+}
+
+model Allergy {
+    id        String            @id @default(uuid())
+    name      String
+    severity  AllergySeverity
+    reactions AllergyReaction[]
+    createdAt DateTime          @default(now())
+    updatedAt DateTime          @default(now()) @updatedAt
+
+    // Pet relation
+    petId String
+    pet   Pet    @relation(fields: [petId], references: [id])
+}
+
+enum AllergySeverity {
+    MILD
+    SEVERE
+}
+
+enum AllergyReaction {
+    HIVES
+    RASH
+    SWELLING
+}
+
+model LabReport {
+    id           String   @id @default(uuid())
+    name         String
+    dosage       String
+    instructions String
+    createdAt    DateTime @default(now())
+    updatedAt    DateTime @default(now()) @updatedAt
+
+    // Pet relation
+    petId String
+    pet   Pet    @relation(fields: [petId], references: [id])
+}

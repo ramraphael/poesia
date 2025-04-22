@@ -1,12 +1,17 @@
 {
   "name": "novellia-takehome",
   "private": true,
+  "author": "Raphael Ram",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "check-types": "turbo run check-types"
+    "check-types": "turbo run check-types",
+    "api": "yarn workspace api",
+    "mobile": "yarn workspace mobile",
+    "android": "expo run:android",
+    "ios": "expo run:ios"
   },
   "devDependencies": {
     "prettier": "^3.5.3",
@@ -18,7 +23,12 @@
   },
   "packageManager": "yarn@1.22.22",
   "workspaces": [
-    "apps/*",
-    "packages/*"
-  ]
+    "apps/*"
+  ],
+  "version": "1.0.0",
+  "dependencies": {
+    "expo": "~52.0.46",
+    "react": "18.3.1",
+    "react-native": "0.76.9"
+  }
 }
