@@ -27,7 +27,7 @@ export const AddLabDialog: React.FC<AddLabDialogProps> = ({
     control,
     handleSubmit,
     reset,
-    formState: { isSubmitting },
+    formState: { isSubmitting, isValid, isReady },
   } = useForm<AddLabFormValues>();
 
   const [error, setError] = useState<string | null>(null);
@@ -120,7 +120,7 @@ export const AddLabDialog: React.FC<AddLabDialogProps> = ({
             mode="contained"
             onPress={handleSubmit(onAddLab)}
             loading={isSubmitting}
-            disabled={isSubmitting}
+            disabled={!isValid || isSubmitting}
           >
             Add
           </Button>

@@ -21,7 +21,7 @@ export const useAuth = () => {
 
       await setAccessToken(accessToken);
 
-      router.push("/(tabs)");
+      return response;
     } catch (error) {
       // TODO(Raph): Toasts for error notifications
       console.error("Error registering account", error);
@@ -39,7 +39,7 @@ export const useAuth = () => {
 
       await setAccessToken(accessToken);
 
-      router.push("/(tabs)");
+      return response;
     } catch (error) {
       // TODO(Raph): Toasts for error notifications
       console.error("Error registering account", error);

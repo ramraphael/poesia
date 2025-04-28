@@ -25,5 +25,3 @@ export const register = async (
     },
   });
 };
-
-// TODO(raph): Implement logout functionality

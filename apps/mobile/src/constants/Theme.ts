@@ -4,7 +4,7 @@ import {
   LIGHT_COLORS,
   NAVIGATION_DARK_COLORS,
   NAVIGATION_LIGHT_COLORS,
-} from "./Colors";
+} from "./colors";
 import { DarkTheme, DefaultTheme, Theme } from "@react-navigation/native";
 
 export const DARK_THEME: MD3Theme = {

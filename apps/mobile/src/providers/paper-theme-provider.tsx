@@ -1,5 +1,5 @@
-import { DARK_THEME, LIGHT_THEME } from "@/constants/Theme";
-import { useColorScheme } from "@/hooks/useColorScheme";
+import { DARK_THEME, LIGHT_THEME } from "@/constants/theme";
+import { useColorScheme } from "@/hooks/use-color-scheme";
 import { PropsWithChildren } from "react";
 import { PaperProvider } from "react-native-paper";
 

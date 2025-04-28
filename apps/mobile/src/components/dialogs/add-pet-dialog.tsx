@@ -28,7 +28,7 @@ export const AddPetDialog: React.FC<AddPetDialogProps> = ({
     control,
     handleSubmit,
     reset,
-    formState: { isSubmitting },
+    formState: { isValid, isSubmitting },
   } = useForm<AddPetFormValues>();
 
   const [error, setError] = useState<string | null>(null);
@@ -153,7 +153,7 @@ export const AddPetDialog: React.FC<AddPetDialogProps> = ({
             mode="contained"
             onPress={handleSubmit(onAddPet)}
             loading={isSubmitting}
-            disabled={isSubmitting}
+            disabled={!isValid || isSubmitting}
           >
             Add
           </Button>

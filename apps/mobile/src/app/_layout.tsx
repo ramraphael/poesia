@@ -9,13 +9,13 @@ import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 
-import { useColorScheme } from "@/hooks/useColorScheme";
+import { useColorScheme } from "@/hooks/use-color-scheme";
 import { PaperThemeProvider } from "@/providers/paper-theme-provider";
 import { useAuth } from "@/hooks/use-auth";
 import {
   NAVIGATION_DARK_THEME,
   NAVIGATION_LIGHT_THEME,
-} from "@/constants/Theme";
+} from "@/constants/theme";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();

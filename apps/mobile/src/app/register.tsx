@@ -3,7 +3,7 @@ import { View, TouchableOpacity } from "react-native";
 import { Button, Text, TextInput, useTheme } from "react-native-paper";
 import { useAuth } from "@/hooks/use-auth";
 import { router } from "expo-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface RegisterFormValues {
   name: string;
@@ -14,9 +14,23 @@ interface RegisterFormValues {
 export default function RegisterScreen() {
   const theme = useTheme();
 
+  const [error, setError] = useState<string | null>(null);
+
   const { control, handleSubmit } = useForm<RegisterFormValues>();
 
   const { registerAccount, isAuthenticated } = useAuth();
+
+  const handleRegister = async (values: RegisterFormValues) => {
+    setError(null);
+
+    const { response } = await registerAccount(values);
+
+    if (response.error) {
+      setError(response.error);
+    } else {
+      router.push("/(tabs)");
+    }
+  };
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -38,6 +52,8 @@ export default function RegisterScreen() {
       }}
     >
       <Text variant="headlineLarge">Create Account</Text>
+
+      {error && <Text style={{ color: "red", marginTop: 8 }}>{error}</Text>}
 
       <Controller
         name="name"
@@ -84,7 +100,7 @@ export default function RegisterScreen() {
         )}
       />
 
-      <Button mode="contained" onPress={handleSubmit(registerAccount)}>
+      <Button mode="contained" onPress={handleSubmit(handleRegister)}>
         Sign Up
       </Button>
       <View style={{ flexDirection: "row", marginTop: 4 }}>

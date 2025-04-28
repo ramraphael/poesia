@@ -36,7 +36,7 @@ export const AddAllergiesDialog: React.FC<AddAllergiesDialogProps> = ({
     control,
     handleSubmit,
     reset,
-    formState: { isSubmitting },
+    formState: { isValid, isSubmitting },
   } = useForm<AddAllergyFormValues>({
     defaultValues: { reactions: [] },
   });
@@ -155,7 +155,7 @@ export const AddAllergiesDialog: React.FC<AddAllergiesDialogProps> = ({
             mode="contained"
             onPress={handleSubmit(onAddAllergy)}
             loading={isSubmitting}
-            disabled={isSubmitting}
+            disabled={!isValid || isSubmitting}
           >
             Add
           </Button>

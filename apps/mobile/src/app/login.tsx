@@ -1,6 +1,6 @@
 import { useAuth } from "@/hooks/use-auth";
 import { router } from "expo-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { View, TouchableOpacity } from "react-native";
 import { Button, Text, TextInput, useTheme } from "react-native-paper";
@@ -13,9 +13,23 @@ interface LoginFormValues {
 export default function LoginScreen() {
   const theme = useTheme();
 
+  const [error, setError] = useState<string | null>(null);
+
   const { control, handleSubmit } = useForm<LoginFormValues>();
 
   const { loginUser, isAuthenticated } = useAuth();
+
+  const handleLogin = async (values: LoginFormValues) => {
+    setError(null);
+
+    const { response } = await loginUser(values);
+
+    if (response.error) {
+      setError(response.error);
+    } else {
+      router.push("/(tabs)");
+    }
+  };
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -37,6 +51,8 @@ export default function LoginScreen() {
       }}
     >
       <Text variant="headlineLarge">Login</Text>
+
+      {error && <Text style={{ color: "red", marginTop: 8 }}>{error}</Text>}
 
       <Controller
         name="email"
@@ -68,7 +84,7 @@ export default function LoginScreen() {
         )}
       />
 
-      <Button mode="contained" onPress={handleSubmit(loginUser)}>
+      <Button mode="contained" onPress={handleSubmit(handleLogin)}>
         Login
       </Button>
       <View style={{ flexDirection: "row", marginTop: 4 }}>
